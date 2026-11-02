@@ -89,6 +89,7 @@ body:not([data-exp=enter]) header{padding-left:96px}#lv{top:auto;left:8px;right:
 #mSw,#mBx{display:flex;gap:6px}#mSw button{width:46px;height:46px;padding:2px}#mSw button.on{border-color:#f2c66d;background:rgba(242,198,109,.2);box-shadow:0 0 12px rgba(242,198,109,.4)}#mt canvas{position:static;inset:auto;width:38px;height:38px}
 #mBx button{width:26px;height:26px;border-radius:6px;padding:0}#mBx button.on{outline:2px solid #fff}#mHint{width:100%;text-align:center;font-size:11px;opacity:.7}
 @media(max-width:760px){#mt{bottom:72px}#cr{bottom:72px}#mp{left:8px;right:8px;transform:none;width:auto;max-width:none;bottom:8px}#spe,#spw iframe{width:100%!important;max-width:100%}#mSw button{width:40px;height:40px}#mt canvas{width:32px;height:32px}}
+#shHelp{display:none;flex-direction:column;gap:6px;align-items:center;font-size:12px;text-align:center;padding:8px;border:1px solid rgba(242,198,109,.3);border-radius:10px}#shHelp.on{display:flex}#shImg{width:80px;border-radius:6px}#shHelp small{opacity:.75}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script><script defer src="/_vercel/insights/script.js"></script>
 </head><body>
@@ -111,7 +112,7 @@ Camera: <b id="camSt">Off (mouse/touch active)</b><br>
 <div id="cta"><button data-x="celebrate"><small>01 · CELEBRATE</small><b>Phatake Wali Vibes</b><span>Light up the night</span></button><button data-x="create"><small>02 · CREATE</small><b>Rangoli Banaao</b><span>Your art, your festive vibe</span></button><!-- MITHAI (disabled for now) <button data-x="mithai"><small>03 · MITHAI</small><b>Mithai Ka Dabba</b><span>Pack sweets for your people</span></button> --></div>
 <button id="home" class="p">← Colony</button>
 <div id="cr" class="p"><div id="sw"></div><button id="tDraw" class="on" title="Draw">✏️</button><button id="tDiya" title="Place diyas">🪔</button><button id="tSym" title="Symmetry">❄ 8</button><button id="tClr" title="Clear">🗑</button><button id="tSave" class="pri">💾 Save</button><button id="tNext">💌 Wish →</button><div id="crHint">Pinch (or drag) to draw · swipe open palm to change colour</div></div>
-<div id="lv" class="p"><div class="hd"><b>Wish Karo 💌</b><button id="lClose">✕</button></div><canvas id="prev" width="300" height="400"></canvas><div id="chips"></div><textarea id="lMsg" maxlength="140" placeholder="Write your own wish…"></textarea><div class="row"><input id="lTo" placeholder="To (optional)" maxlength="24"><input id="lName" placeholder="From (optional)" maxlength="24"></div><div class="row"><button id="lRg">🎨 Rangoli</button><button id="lCap">📷 Capture</button><button id="lUp">⬆ Upload</button></div><div class="row"><button id="lSave">💾 Save</button><button id="lWa" class="pri">Send on WhatsApp</button></div><input type="file" id="lFile" accept="image/*" hidden></div>
+<div id="lv" class="p"><div class="hd"><b>Wish Karo 💌</b><button id="lClose">✕</button></div><canvas id="prev" width="300" height="400"></canvas><div id="chips"></div><textarea id="lMsg" maxlength="140" placeholder="Write your own wish…"></textarea><div class="row"><input id="lTo" placeholder="To (optional)" maxlength="24"><input id="lName" placeholder="From (optional)" maxlength="24"></div><div class="row"><button id="lRg">🎨 Rangoli</button><button id="lCap">📷 Capture</button><button id="lUp">⬆ Upload</button></div><div class="row"><button id="lSave">💾 Save</button><button id="lWa" class="pri">Send on WhatsApp</button></div><div id="shHelp"><img id="shImg" alt="Your card" draggable="true"><b id="shT"></b><small>Save or copy the card, then attach it in WhatsApp (paste with ⌘V / Ctrl+V, or use the 📎 button).</small><div class="row"><button id="shCopy">Copy image</button><button id="shDl">Save image</button><button id="shTxt">Copy text</button></div><div class="row"><button id="shTry">Share image only</button><button id="shLive" hidden>Open live site</button></div></div><input type="file" id="lFile" accept="image/*" hidden></div>
 <div id="mp" class="p"><div id="mpr"><div id="disc">🪔</div><div id="mpi"><b id="mpT">Diwali Playlist</b><small id="mpS">Spotify</small><div id="eq"><i></i><i></i><i></i><i></i></div></div><button id="mPlay" title="Play / pause">▶</button><button id="mFold" title="Show / hide playlist">▾</button></div><div id="spw"><div id="spe"></div></div></div>
 <!-- MITHAI panel (disabled for now)
 <div id="mt" class="p"><div id="mSw"></div><div id="mBx"></div><button id="mClr" title="Start a new box">↺</button><button id="mSeal" class="pri">🎁 Seal & Share</button><div id="mHint">Pick a sweet from the thali, then tap a slot in the box · tap a filled slot to remove</div></div>
@@ -421,7 +422,7 @@ x.save();x.beginPath();x.arc(450,500,270,0,6.283);x.clip();x.fillStyle='#1a0e2e'
 x.strokeStyle='#f2c66d';x.lineWidth=6;x.beginPath();x.arc(450,500,276,0,6.283);x.stroke();
 const to=$('#lTo').value.trim();if(to){x.fillStyle='#f2c66d';x.font='700 38px Georgia,serif';x.fillText('Dear '+to+',',450,835)}x.fillStyle='#fff3d6';x.font='italic 40px Georgia,serif';wrap(x,$('#lMsg').value||'May your home glow with joy, light and endless sweets. Happy Diwali!',450,880,720,56);
 x.fillStyle='#f2c66d';x.font='700 34px Georgia,serif';const nm=$('#lName').value;if(nm)x.fillText('— '+nm,450,1080);x.font='22px Inter,sans-serif';x.fillStyle='rgba(255,232,184,.6)';x.fillText('Diwali Nights',450,1140);return c}
-const pc=$('#prev').getContext('2d'),upPrev=()=>{pc.clearRect(0,0,300,400);pc.drawImage(card(),0,0,300,400)};
+const pc=$('#prev').getContext('2d'),upPrev=()=>{const c=card();pc.clearRect(0,0,300,400);pc.drawImage(c,0,0,300,400);prepShare(c)};
 $('#lMsg').oninput=$('#lName').oninput=$('#lTo').oninput=upPrev;$('#lRg').onclick=()=>{limg=rimg();upPrev()};$('#lUp').onclick=()=>$('#lFile').click();
 $('#lFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{limg=im;upPrev()};im.src=URL.createObjectURL(f)};
 $('#lCap').onclick=async()=>{if(!camOn&&!(await startCam()))return;if(video.readyState<2){toast('Camera warming up — tap Capture again');return}const c=cv(video.videoWidth,video.videoHeight),x=c.getContext('2d');x.translate(c.width,0);x.scale(-1,1);x.drawImage(video,0,0);limg=c;upPrev();toast('Captured 📸')};
@@ -433,10 +434,27 @@ $('#bWish').onclick=()=>document.body.dataset.wish?closeWish():openWish();$('#lC
 const wmsg=()=>{const to=$('#lTo').value.trim(),fr=$('#lName').value.trim();return(to?'Dear '+to+',\n':'')+($('#lMsg').value||WISH[0])+(fr?'\n\u2014 '+fr:'')};
 function dl(c,n){const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download=n;a.click()}
 $('#lSave').onclick=()=>{dl(card(),'diwali-wish.png');track('wish_saved');toast('Card saved \u2728')};
-$('#lWa').onclick=async()=>{const c=card(),m=wmsg(),u='https://wa.me/?text='+encodeURIComponent(m),p={to:!!$('#lTo').value.trim(),from:!!$('#lName').value.trim()},png=await new Promise(r=>c.toBlob(r,'image/png')),f=new File([png],'diwali-wish.png',{type:'image/png'});
-if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:m});p.method='native';track('whatsapp_share',p);return}catch(e){if(e.name=='AbortError')return}}
-let ok=false;try{await navigator.clipboard.write([new ClipboardItem({'image/png':png})]);ok=true}catch(e){}
-dl(c,'diwali-wish.png');open(u,'_blank');p.method=ok?'clipboard':'download';track('whatsapp_share',p);toast(ok?'Card copied & saved \u2014 press \u2318V / Ctrl+V in the WhatsApp chat, or attach the saved file':'Card saved \u2014 attach it with the \ud83d\udcce button in WhatsApp',7000)};
+let lastCard=null,shareBlob=null;const inFrame=window.self!==window.top;if(inFrame)$('#shLive').hidden=false;
+function prepShare(c){lastCard=c;$('#shHelp').classList.remove('on')}
+function dataFile(c){const b=atob(c.toDataURL('image/png').split(',')[1]),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return new File([u],'diwali-wish.png',{type:'image/png'})}
+const copyImg=()=>navigator.clipboard&&window.ClipboardItem&&shareBlob?navigator.clipboard.write([new ClipboardItem({'image/png':shareBlob})]).then(()=>true,()=>false):Promise.resolve(false);
+function dlBlob(){const a=document.createElement('a');a.href=URL.createObjectURL(shareBlob);a.download='diwali-wish.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+function showHelp(msg){if(shareBlob)$('#shImg').src=URL.createObjectURL(shareBlob);$('#shT').textContent=msg;$('#shHelp').classList.add('on');$('#shHelp').scrollIntoView({block:'nearest'})}
+function waText(m,done){open('https://wa.me/?text='+encodeURIComponent(m),'_blank');done()}
+function textShare(m,p,hadImg){const done=()=>{p.method=hadImg?'text-fallback':'text-only';track('whatsapp_share',p)};
+if(navigator.share)navigator.share({text:m}).then(done).catch(e=>{if(e&&e.name!='AbortError')waText(m,done)});else waText(m,done);
+if(hadImg)showHelp('This browser can\u2019t attach images to WhatsApp, so only your message was shared. Save or copy the card below and attach it yourself.')}
+$('#lWa').onclick=()=>{const m=wmsg(),p={to:!!$('#lTo').value.trim(),from:!!$('#lName').value.trim()};let f=null;try{f=lastCard?dataFile(lastCard):null}catch(e){}
+shareBlob=f;
+const desk=!/Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent)&&!(navigator.maxTouchPoints>1&&/Mac/.test(navigator.platform));
+if(desk){waText(m,()=>{p.method='desktop-text';track('whatsapp_share',p)});return}
+if(f&&navigator.share&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],title:'Shubh Deepavali',text:m}).then(()=>{p.method='native';track('whatsapp_share',p)}).catch(e=>{if(e&&e.name=='AbortError')return;showHelp(inFrame?'Your browser blocks image sharing inside an embedded preview \u2014 open the live site in its own tab and try again.':'Image sharing didn\u2019t go through ('+((e&&e.name)||'error')+'). Try \u201cShare image only\u201d, or save/copy the card.')});return}
+textShare(m,p,!!f)};
+$('#shCopy').onclick=()=>copyImg().then(ok=>toast(ok?'Image copied \u2713':'Could not copy \u2014 use Save image'));
+$('#shDl').onclick=()=>{if(shareBlob)dlBlob()};
+$('#shTxt').onclick=()=>navigator.clipboard.writeText(wmsg()).then(()=>toast('Message copied \u2713'),()=>toast('Could not copy'));
+$('#shTry').onclick=()=>{const f=lastCard&&dataFile(lastCard);if(!f||!navigator.share||!navigator.canShare||!navigator.canShare({files:[f]})){toast('Image sharing is not available here \u2014 use Save image');return}navigator.share({files:[f]}).then(()=>track('whatsapp_share',{method:'image-only'})).catch(e=>{if(e&&e.name!='AbortError')toast('Still blocked ('+((e&&e.name)||'error')+') \u2014 use Save image')})};
+$('#shLive').onclick=()=>open(SITE,'_blank');
 /* ---------- music player (Spotify playlist) ---------- */
 const SPID='3qf2ytwjnvhbiPCIrYfvKe',SPURL='https://open.spotify.com/playlist/'+SPID,TR=[0,0,0,0,{bpm:92,root:185}],DEG=[0,2,4,7,9,12,14,16,19,21];
 let mp=false,sp=null;
